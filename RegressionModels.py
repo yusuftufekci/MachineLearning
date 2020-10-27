@@ -32,7 +32,7 @@ lin_reg.fit(x.values,y.values)
 
 
 
-##Polynomial regressiona bakıyoruz burda
+##Polynomial regression
 from sklearn.preprocessing import PolynomialFeatures
 
 poly_reg = PolynomialFeatures(degree=2)
@@ -65,11 +65,11 @@ plt.show()
 
 
 plt.scatter(X,Y,color="blue")
-plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)),color="red") ## Normal linear regression yapar gibi yapıyorsun ama önemli nokta şu ki verdiğin değeri polynomial features kullanarak önce bi polynomial hale getirmek gerekiyor
+plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)),color="red")  
 plt.show()
 
 plt.scatter(X,Y,color="blue")
-plt.plot(X,lin_reg3.predict(poly_reg.fit_transform(X)),color="red") ## Normal linear regression yapar gibi yapıyorsun ama önemli nokta şu ki verdiğin değeri polynomial features kullanarak önce bi polynomial hale getirmek gerekiyor
+plt.plot(X,lin_reg3.predict(poly_reg.fit_transform(X)),color="red") 
 plt.show()
 
 print(lin_reg.predict([[11]]))
@@ -123,7 +123,7 @@ print(r_dt.predict([[11]]))
 
 plt.show()
 
-##Rassan ağaçlar
+##RandomForestRegressor
 
 from sklearn.ensemble import RandomForestRegressor
 
@@ -137,30 +137,3 @@ print(rf_reg.predict([[6.6]]))
 plt.scatter(X,Y,color="red")
 
 plt.plot(X,rf_reg.predict(X),color="green")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
