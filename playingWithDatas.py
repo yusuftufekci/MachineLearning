@@ -27,18 +27,18 @@ from sklearn.impute import SimpleImputer
 
 imputer = SimpleImputer(missing_values=np.nan,strategy="mean")   ## Ortalamayı yazıcağımızdan dolayı ortalama alma stratejisini alıyoruz
 
-yas = eksikVeriler.iloc[:,1:4].values   ## 1 den 4 e kadar olan satırları alıyoruz
+yas = eksikVeriler.iloc[:,1:4].values   
 
 #print(yas)
 
 imputer = imputer.fit(yas[:,1:4])   ## Fit ile öğretiyoruz
 
-yas[:,1:4] = imputer.transform(yas[:,1:4])   ## transfor ile çğrendiğini uygulama
+yas[:,1:4] = imputer.transform(yas[:,1:4])   ## transfor ile öğrendiğini uygulama
 
 #print(yas)
 
 
-## ENCODE ETME. KATEGORİGe VERİLERİ NUMERİC YAPMA
+## ENCODE ETME, VERİLERİ NUMERİC YAPMA
 
 ulke = veriler.iloc[:,0:1].values   ## Sadece en baştaki ülkelerini verimizden çekiyoruz
 
@@ -46,20 +46,20 @@ ulke = veriler.iloc[:,0:1].values   ## Sadece en baştaki ülkelerini verimizden
 
 from sklearn import preprocessing
 
-le = preprocessing.LabelEncoder()     ## Burda direk tr ye 0 us ye 1 fr ye 2 değerini atıyor numeric yapmak için
+le = preprocessing.LabelEncoder()     ## Encode işlemi
 
 ulke[:,0] = le.fit_transform(veriler.iloc[:,0])
 
 #print(ulke)
 
-ohe = preprocessing.OneHotEncoder()   ## burda 3 parçaya ayırıyoruz eğer tr ise tr 1 geri kalan 0
+ohe = preprocessing.OneHotEncoder()   ## OneHotEncoder işlemi
 
 ulke = ohe.fit_transform(ulke).toarray()
 
 #print(ulke)
 
 
-## Şimdi değ,işiklik yaptığımız verileri toplayıp ortak bi veri kümesi elde deicez
+## Data framemizi toparlıyoruz
 
 
 sonuc = pd.DataFrame(data=ulke, index= range(22), columns=["fr","tr","us"])
@@ -84,15 +84,15 @@ sDeneme = pd.concat([sonuc,sonuc2])   ## dataları alt alta ekliyor bu şekilde
 #print (sDeneme)
 
 
-s = pd.concat([sonuc,sonuc2],axis=1)  ## Yan yana dataları birleştiriyor
+s = pd.concat([sonuc,sonuc2],axis=1)  ## Data frameleri birleştiriyoruz
 
 #print(s)
 
-s2 = pd.concat([s,sonuc3],axis=1)  ## En son tüm düzeltilmiş datalarımızı aldık ve birleştirdik.
+s2 = pd.concat([s,sonuc3],axis=1) 
 
 print(s2)
 
-# GELEN VERİYİ BÖLEREK AYRI AYRI ÇALIŞMA
+# Train ve Test olarak verimizi bölüyoruz
 
 
 
@@ -109,23 +109,3 @@ sc = StandardScaler()    ## Öznitelik ölçekleme, farklı dünyadaki veirlerin
 X_train = sc.fit_transform(x_train)
 
 X_test = sc.fit_transform(x_test)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
