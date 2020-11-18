@@ -1,2 +1,2 @@
 # MachineLearning
-My Machine learning algorithm codes
+My Machine learning algorithm codes from course
